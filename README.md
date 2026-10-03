@@ -1,7 +1,177 @@
-# Product Growth Analytics
-This project analyzes the growth and performance of a subscription-based product using SQL and Power BI. A medallion data warehouse architecture (Bronze → Silver → Gold) was implemented to transform raw data into analytics-ready tables.
-The analysis covers key product metrics including conversion funnel, cohort retention, user engagement (DAU/MAU stickiness), and revenue expansion vs new revenue.
-Insights were visualized through an interactive Power BI dashboard to understand user behavior, engagement patterns, and product growth drivers.
+# SaaS Product Growth & Customer Analytics
 
-# Dashboard Preview
-<img width="1286" height="718" alt="image" src="https://github.com/user-attachments/assets/440446ba-e9f5-4551-ac37-60af136e86db" />
+> A business analytics project that transforms raw SaaS product, subscription and payment data into decision-ready insights across conversion, engagement, retention and revenue.
+
+![SQL](https://img.shields.io/badge/SQL-Data%20Analysis-1f6feb)
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-f2c811)
+![Architecture](https://img.shields.io/badge/Architecture-Bronze%20%7C%20Silver%20%7C%20Gold-6f42c1)
+![Focus](https://img.shields.io/badge/Focus-Product%20%26%20Business%20Analytics-0a7b5c)
+
+## Business Problem
+
+A subscription-based SaaS business needs to understand how users move from acquisition to trial to paid subscription, how consistently they use the product, how long they remain active, and whether recurring revenue growth is coming from new customers or existing customers.
+
+The objective is to convert raw product, subscription, activity and payment data into a structured analytical model that supports decisions across Product, Growth, Customer Success and Revenue teams.
+
+## Business Questions
+
+1. Where are users dropping out of the customer journey?
+2. Which acquisition channels generate stronger conversion?
+3. How does conversion vary across signup cohorts and trial duration?
+4. Which customer cohorts retain product usage over time?
+5. How engaged are users, measured through DAU, MAU and stickiness?
+6. Is revenue growth driven by new customers or existing customers?
+7. Does experiment variant performance differ across conversion outcomes?
+8. Which segments should be investigated for potential growth or retention opportunities?
+
+## Stakeholders & Decisions
+
+| Stakeholder | Decision supported | Key metrics |
+|---|---|---|
+| Product Manager | Identify funnel and engagement opportunities | Activation, conversion, retention, stickiness |
+| Growth Manager | Evaluate acquisition quality | Channel conversion, funnel drop-off |
+| Customer Success | Identify weaker cohorts | Retention, activity, cohort performance |
+| Revenue Team | Understand growth composition | New revenue, expansion revenue |
+| Leadership | Monitor overall product health | Conversion, retention, revenue, engagement |
+
+## Analytical Approach
+
+```text
+Raw Product / Subscription / Payment Data
+                  ↓
+           Bronze Layer
+                  ↓
+       Data Quality & Cleaning
+                  ↓
+            Silver Layer
+                  ↓
+       Business-ready Gold Layer
+                  ↓
+        KPI & Segmentation Analysis
+                  ↓
+             Power BI
+                  ↓
+       Insights → Actions → KPIs
+```
+
+## Data Warehouse Architecture
+
+The project follows a **Bronze → Silver → Gold** medallion architecture.
+
+- **Bronze:** raw source data retained close to source structure.
+- **Silver:** cleaned, standardized and deduplicated data with data-quality controls.
+- **Gold:** business-ready fact and dimension tables optimized for analytics.
+
+## KPI Framework
+
+| KPI | Definition | Decision Use |
+|---|---|---|
+| Trial-to-Paid Conversion | Paid users ÷ eligible trial users | Measures monetization effectiveness |
+| Funnel Drop-off | Users exiting before paid subscription | Identifies leakage |
+| Time to Conversion | Days from trial start to paid subscription | Measures monetization speed |
+| DAU | Unique users active per day | Measures daily engagement |
+| MAU | Unique users active per month | Measures monthly reach |
+| Stickiness | Average DAU ÷ MAU | Measures usage frequency |
+| Retention | Active cohort users ÷ original cohort | Measures sustained product value |
+| New Revenue | Revenue in a user's first revenue month | Measures acquisition-driven growth |
+| Expansion Revenue | Revenue after the first revenue month | Measures monetization of existing customers |
+
+## Analysis Included
+
+### 1. Conversion Funnel
+Measures signup → trial → trial completion → paid subscription progression, with monthly and acquisition-channel views.
+
+### 2. Trial Drop-off & Conversion Speed
+Identifies the proportion of trial users who do not convert and measures time to conversion.
+
+### 3. Acquisition Channel Analysis
+Compares conversion performance across acquisition sources to evaluate differences in user quality.
+
+### 4. Trial Duration Analysis
+Examines observed conversion rates across trial durations.
+
+### 5. Cohort Retention
+Groups customers by signup month and measures activity retention in subsequent months.
+
+### 6. Engagement
+Calculates DAU, MAU and monthly stickiness to understand product usage frequency.
+
+### 7. Revenue Growth
+Separates new revenue from revenue generated by users after their first revenue month.
+
+### 8. Experiment Analysis
+Uses the experiment variant field to compare observed funnel outcomes between variants. Results should be interpreted in the context of experiment design and sample size; observed differences are not automatically causal.
+
+## Business Requirements
+
+- The business should be able to monitor trial-to-paid conversion.
+- The business should be able to compare conversion across acquisition channels.
+- The business should be able to monitor cohort retention.
+- The business should be able to distinguish new and existing-customer revenue.
+- The business should be able to compare observed outcomes across experiment variants.
+- The business should be able to identify segments requiring deeper investigation.
+
+## Repository Structure
+
+```text
+product-analytics-data-warehouse/
+│
+├── README.md
+├── product_analytics_queries.sql
+│
+└── docs/
+    ├── business_requirements.md
+    ├── stakeholder_map.md
+    ├── KPI_dictionary.md
+    ├── executive_summary.md
+    ├── assumptions_and_limitations.md
+    └── data_model.md
+```
+
+## Dashboard
+
+### Power BI Dashboard Preview
+
+<img width="1286" height="718" alt="Product Growth Analytics Dashboard" src="https://github.com/user-attachments/assets/440446ba-e9f5-4551-ac37-60af136e86db" />
+
+The dashboard is designed to move from **performance monitoring → diagnosis → business action**, rather than simply displaying charts.
+
+## Key Insight → Action Framework
+
+Each analytical finding should be interpreted through:
+
+```text
+Observed Pattern
+      ↓
+Business Interpretation
+      ↓
+Potential Driver / Hypothesis
+      ↓
+Recommended Investigation or Action
+      ↓
+KPI to Monitor
+```
+
+This prevents the analysis from stopping at descriptive reporting.
+
+## Technical Stack
+
+- **SQL Server / T-SQL** — transformation, analytical views and KPI calculations
+- **Medallion Architecture** — Bronze, Silver and Gold layers
+- **Power BI** — dashboarding and decision support
+- **GitHub** — version control and project documentation
+
+## Assumptions & Limitations
+
+- The project dataset is treated as an analytical/synthetic SaaS dataset.
+- Revenue analysis does not claim to represent a complete accounting ledger unless refunds, chargebacks and adjustments are available.
+- Conversion, retention and experiment results describe the available data and should not be interpreted as causal without an appropriate experimental design.
+- Acquisition efficiency metrics such as CAC and ROAS require marketing-cost data, which is not included in the current model.
+
+## Portfolio Relevance
+
+This project demonstrates the full business analytics workflow:
+
+**Business problem → requirements → KPI definition → data modelling → SQL analysis → segmentation → dashboard → insight → business action.**
+
+It is intentionally designed to demonstrate both **technical analytics capability** and **Business Analyst thinking**.
