@@ -7,6 +7,22 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Bronze%20%7C%20Silver%20%7C%20Gold-6f42c1)
 ![Focus](https://img.shields.io/badge/Focus-Product%20%26%20Business%20Analytics-0a7b5c)
 
+---
+
+## Executive Snapshot
+
+| Metric | Observed result |
+|---|---:|
+| Users analyzed | **10,000** |
+| Signup → Paid conversion | **39.64%** |
+| Enterprise conversion | **61.03%** |
+| Small-business conversion | **32.26%** |
+| Avg. monthly stickiness | **~13.13%** |
+| Variant B vs A | **+4.31 pp** observed conversion |
+
+> **Portfolio note:** The dataset is treated as an analytical/synthetic SaaS dataset. Findings are descriptive unless the underlying experimental design supports causal inference.
+
+
 ## Business Problem
 
 A subscription-based SaaS business needs to understand how users move from acquisition to trial to paid subscription, how consistently they use the product, how long they remain active, and whether recurring revenue growth is coming from new customers or existing customers.
