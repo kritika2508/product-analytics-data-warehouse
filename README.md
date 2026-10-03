@@ -186,8 +186,6 @@ product-analytics-data-warehouse/
 
 The dashboard is designed to move from **performance monitoring → diagnosis → business action**, rather than simply displaying charts.
 
-A proposed four-page dashboard structure is documented in [docs/powerbi_enhancement_spec.md](docs/powerbi_enhancement_spec.md).
-
 ## Technical Stack
 
 - **SQL Server / T-SQL** — transformation, analytical views and KPI calculations
